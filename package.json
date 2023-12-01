@@ -21,9 +21,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "node test.js",
+    "test": "node src/test.js",
     "eject": "react-scripts eject",
-    "start-prod": "node src/app.js"
+    "start-prod": "node app.js"
   },
   "eslintConfig": {
     "extends": [
