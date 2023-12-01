@@ -3,11 +3,11 @@ require("chromedriver");
 const { Builder, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
 
-(async function example() {
-  let driver = await new Builder()
-    .forBrowser('chrome')
-    .setChromeOptions(new chrome.Options().headless()) // Set Chrome to run in headless mode
-    .build();
+async function runTest() {
+  // Set up Selenium WebDriver with Chrome in headless mode
+  const chromeCapabilities = Capabilities.chrome();
+  chromeCapabilities.set('goog:chromeOptions', { args: ['--headless'] });
+  const driver = new webdriver.Builder().withCapabilities(chromeCapabilities).build();
 
   try {
     // Open the local website
