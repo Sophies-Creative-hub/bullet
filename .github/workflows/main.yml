@@ -18,14 +18,14 @@ jobs:
         with:
           node-version: '14' # Aktualisiere dies auf die gewünschte Node.js-Version
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Build Docker Image
+        run: docker build -t my-app .
 
-      - name: Start App for Tests
-        run: npm run start-prod &
+      - name: Run Docker Container
+        run: docker run -d -p 5500:5500 my-app
 
       - name: Wait for App to Start
-        run: npx wait-on http://localhost:3000
+        run: npx wait-on http://localhost:5500
 
       - name: Run End-to-End Tests with Selenium
         run: npm run test
