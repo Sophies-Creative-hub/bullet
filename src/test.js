@@ -9,7 +9,7 @@ const assert = require("assert");
 
   try {
     // Open the local website
-    await driver.get("http://localhost:3000"); // Update the URL to your local server
+    await driver.get("https://victoria-lo.github.io/bulletin-board/"); // Update the URL to your local server
 
     //find the search box and enter a note
     await driver.findElement(By.xpath('//*[@id="new-item"]/input')).sendKeys("Hello Selenium", Key.RETURN);
