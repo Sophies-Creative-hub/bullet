@@ -4,8 +4,10 @@ const { Builder, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
 
 (async function example() {
-  // Open Chrome browser
-  let driver = await new Builder().forBrowser("chrome").build();
+  let driver = await new Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(new chrome.Options().headless()) // Set Chrome to run in headless mode
+    .build();
 
   try {
     // Open the local website
