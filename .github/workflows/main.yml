@@ -9,22 +9,23 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '14'
 
       - name: Install Dependencies
         run: |
           npm install
+          npm install selenium-webdriver chromedriver mocha chai
 
-      - name: Build
-        run: npm run build
+      - name: Start Node.js Server
+        run: npm start &
 
-      - name: Run Tests
-        run: npm test
+      - name: Wait for Server to Start
+        run: sleep 10
 
       - name: Run Selenium Tests
         run: npm test
