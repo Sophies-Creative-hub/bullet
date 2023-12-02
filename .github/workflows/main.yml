@@ -1,24 +1,31 @@
 name: Selenium Tests
 
-on: [push]
+on:
+  push
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
-    - name: Install Dependencies
-      run: |
-        npm install
-        npm install selenium-webdriver chromedriver mocha chai
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install selenium-webdriver chromedriver mocha chai
 
-    - name: Run Selenium Tests
-      run: npm test
+      - name: Start Node.js Server
+        run: npm start &
+
+      - name: Wait for Server to Start
+        run: sleep 10
+
+      - name: Run Selenium Tests
+        run: npm test
