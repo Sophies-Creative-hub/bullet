@@ -11,7 +11,7 @@ describe("Selenium Tests", function () {
 
     try {
       // Open the local website
-      await driver.get("https://victoria-lo.github.io/bulletin-board/");
+      await driver.get("http://localhost:3000");
 
       // Find the search box and enter a note
       await driver.findElement(By.xpath('//*[@id="new-item"]/input')).sendKeys("Hello Selenium", Key.RETURN);
