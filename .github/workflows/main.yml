@@ -19,10 +19,12 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npm install selenium-webdriver chromedriver mocha chai
 
-      - name: Start Node.js Server
-        run: npm start
+      - name: Build
+        run: npm run build
+
+      - name: Run Tests
+        run: npm test
 
       - name: Run Selenium Tests
         run: npm test
