@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx mocha --no-timeouts 'test.js'",
+    "test": "npx mocha --no-timeouts 'src/test.js'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
