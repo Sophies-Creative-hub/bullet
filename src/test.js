@@ -1,5 +1,6 @@
 const { Builder, By, Key, Capabilities } = require("selenium-webdriver");
-require("chromedriver"); // Make sure chromedriver is installed and available in your project
+require("chromedriver");
+const assert = require('chai').assert; // Fügen Sie diese Zeile hinzu
 
 async function runTest() {
   // Set up Selenium WebDriver with Chrome in headless mode
@@ -9,7 +10,7 @@ async function runTest() {
 
   try {
     // Open the local website
-    await driver.get("https://victoria-lo.github.io/bulletin-board/"); // Update the URL to your local server
+    await driver.get("https://victoria-lo.github.io/bulletin-board/");
 
     // Find the search box and enter a note
     await driver.findElement(By.xpath('//*[@id="new-item"]/input')).sendKeys("Hello Selenium", Key.RETURN);
