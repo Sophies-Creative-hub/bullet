@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "node src/test2.js",
     "eject": "react-scripts eject",
-    "start-prod": "node app.js"
+    "start-prod": "npx mocha --no-timeouts 'test.js'"
   },
   "eslintConfig": {
     "extends": [
