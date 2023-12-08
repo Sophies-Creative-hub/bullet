@@ -20,7 +20,7 @@ describe("add note", function () {
 
         try {
             //open the website
-            await driver.get("https://victoria-lo.github.io/bulletin-board/");
+            await driver.get("http://localhost:3000/");
 
             //find the search box and enter a note
             await driver
