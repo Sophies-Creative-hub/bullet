@@ -21,7 +21,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx mocha --no-timeouts 'src/test.js'",
+    "test": "mocha",
+    "test:firefox": "mocha --reporter mochawesome --timeout 30000 'src/test3.js'",
     "eject": "react-scripts eject",
     "start:prod": "node app.js"
   },
