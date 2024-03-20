@@ -1,32 +1,39 @@
 const { Builder, By, Key, Capabilities } = require("selenium-webdriver");
-require("geckodriver");
+require("geckodriver"); // Importiere das geckodriver-Paket
+
 const assert = require('chai').assert;
 
+// Beschreibt den Testfall für Selenium-Tests
 describe("Selenium Tests", function () {
+  
+  // Testfall: Überprüft, ob eine Notiz hinzugefügt und angezeigt wird
   it("should add a note and display on the page", async function () {
-    // Set up Selenium WebDriver with Firefox in headless mode
+    
+    // Setzt die Capabilities für den Firefox-Browser im headless Modus
     const firefoxCapabilities = Capabilities.firefox();
     firefoxCapabilities.set('moz:firefoxOptions', { args: ['-headless'] });
+    
+    // Erstellt einen WebDriver mit den festgelegten Capabilities
     const driver = new Builder().withCapabilities(firefoxCapabilities).build();
 
     try {
-      // Open the local website
+      // Öffnet die lokale Website
       await driver.get("http://localhost:3000");
 
-      // Find the search box and enter a note
+      // Findet das Eingabefeld und gibt eine Notiz ein
       await driver.findElement(By.xpath('//*[@id="new-item"]/input'))
                   .sendKeys("Hello Selenium", Key.RETURN);
 
-      // Get the note's text
+      // Holt sich den Text der hinzugefügten Notiz
       let note = await driver.findElement(By.xpath('//*[@id="items"]/div/p'))
                             .getText();
 
-      // Assert that the note's text is the same as the input text "Hello Selenium"
+      // Vergleicht den Text der Notiz mit dem eingegebenen Text "Hello Selenium"
       assert.strictEqual(note, "Hello Selenium");
       console.log("TEST PASSED");
 
     } finally {
-      // Close the browser
+      // Schließt den Browser
       await driver.quit();
     }
   });
