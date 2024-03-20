@@ -19,7 +19,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npm install selenium-webdriver geckodriver mocha chai
+          npm install geckodriver selenium-webdriver mocha chai
 
       - name: Build React App
         run: npm run build
@@ -31,4 +31,4 @@ jobs:
         run: sleep 10
 
       - name: Run Selenium Tests with Firefox
-        run: npm run test:firefox  # Ändern Sie den Testbefehl entsprechend Ihrer npm-Skripts
+        run: npm test
