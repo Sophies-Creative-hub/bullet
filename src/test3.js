@@ -1,42 +1,42 @@
-require("geckodriver"); 
+require("geckodriver");
 
-const { Builder, By, Key } = require("selenium-webdriver");
-var assert = require("chai").assert;
+const { Builder, By, Key, Options } = require("selenium-webdriver");
+const assert = require("chai").assert;
 
-//describe - describes test
-describe("add note", function () {
-    //it - describes expected behaviour
-    it("should add a note and display on the page", async function () {
-        /*Selenium automates:
-       1. Open Firefox 
-       2. Navigate to app
-       3. Type "Hello Selenium" in input box
-       4. Clicks the Enter key
-      */
-        //Chai asserts if new note's text matches the input
-
-        //open Firefox browser 
-        let driver = await new Builder().forBrowser("firefox").build(); 
+// Beschreibung - beschreibt den Test
+describe("Notiz hinzufügen", function () {
+    // Es beschreibt das erwartete Verhalten
+    it("sollte eine Notiz hinzufügen und auf der Seite anzeigen", async function () {
+        /* Selenium automatisiert:
+           1. Öffnen Sie Firefox im headless Modus
+           2. Navigieren Sie zur App
+           3. Geben Sie "Hello Selenium" in das Eingabefeld ein
+           4. Drücken Sie die Eingabetaste
+        */
+        // Öffnen Sie den Firefox-Browser im headless Modus
+        const firefoxOptions = new Options().headless();
+        let driver = await new Builder()
+            .forBrowser("firefox")
+            .setFirefoxOptions(firefoxOptions)
+            .build();
 
         try {
-            //open the website
+            // Öffnen Sie die Website
             await driver.get("http://localhost:3000/");
 
-            //find the search box and enter a note
-            await driver
-                .findElement(By.xpath('//*[@id="new-item"]/input'))
+            // Suchen Sie das Eingabefeld und geben Sie eine Notiz ein
+            await driver.findElement(By.xpath('//*[@id="new-item"]/input'))
                 .sendKeys("Hello Selenium", Key.RETURN);
 
-            //get the note's text
-            let note = await driver
-                .findElement(By.xpath('//*[@id="items"]/div/p'))
+            // Holen Sie sich den Text der Notiz
+            let note = await driver.findElement(By.xpath('//*[@id="items"]/div/p'))
                 .getText();
 
-            //assert that the note's text is the same as the input text "Hello Selenium"    
+            // Überprüfen Sie, ob der Text der Notiz mit dem eingegebenen Text "Hello Selenium" übereinstimmt    
             assert.equal(note, "Hello Selenium");
-            console.log("TEST PASSED");
+            console.log("TEST ERFOLGREICH");
         } finally {
-            //close the browser
+            // Schließen Sie den Browser
             await driver.quit();
         }
 
